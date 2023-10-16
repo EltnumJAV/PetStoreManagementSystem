@@ -36,4 +36,20 @@ public abstract class Pet implements Comparable
     {
         return price;
     }
+
+    /// compares dog object to provided object based on price
+    public int compareTo(Object obj)
+    {
+        double petPrice = this.getPrice();
+        double objPrice = ((Pet) obj).getPrice();
+        if(petPrice > objPrice)
+        {
+            return 1;
+        }
+        else if(petPrice < objPrice)
+        {
+            return -1;
+        }
+        return 0;
+    }
 }

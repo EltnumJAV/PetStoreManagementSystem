@@ -192,11 +192,11 @@ public class PetStoreDriver
             System.out.print("\nEnter ID Of Second Pet: ");
             int secondId = scanner.nextInt();
             Pet p2 = petStore.getPet(secondId);
-            if((p1.compareTo(p2)) == 1)
+            if((p1.compareTo(p2)) > 0)
             {
                 System.out.println("\nThe First Pet Is More Expensive\n");
             }
-            else if((p1.compareTo(p2)) == -1)
+            else if((p1.compareTo(p2)) < 0)
             {
                 System.out.println("\nThe Second Pet Is More Expensive\n");
             }

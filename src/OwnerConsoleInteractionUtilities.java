@@ -115,6 +115,7 @@ public class OwnerConsoleInteractionUtilities
             else if(choice == 9)
             {
                 petStore.adoptionDrive(petStore.getAdoptionPool());
+                petStore.getAdoptionPool().clear();
                 petStore.displayDogs();
                 petStore.displayCats();
                 petStore.displayExotics();

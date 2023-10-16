@@ -278,7 +278,6 @@ public class PetStore implements PetStoreSpecification
         for(Pet pet : pets)
         {
             petList.add(pet);
-            petId++;
         }
     }
 
