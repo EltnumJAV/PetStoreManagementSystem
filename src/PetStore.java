@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-import java.util.UUID;
 
+// class for creating pet stores that implements methods from a class that specifies pet store-specific features
 public class PetStore implements PetStoreSpecification
 {
     // pet store attributes
@@ -13,11 +13,8 @@ public class PetStore implements PetStoreSpecification
     private ArrayList<Pet> adoptionPool;
     private static int petId = 1;
     private static int memberId = 1;
-    private static int dogStock;
-    private static int catStock;
-    private static int exoticStock;
 
-    // pet store constructor
+    // creates a pet store
     public PetStore(String name, String address, int storeNumber)
     {
         this.name = name;
@@ -29,15 +26,10 @@ public class PetStore implements PetStoreSpecification
         monthlyFeeDue = false;
     }
 
+    // gets a pet's id
     public int getPetId()
     {
         return petId;
-    }
-
-    // returns pet store's adoption pool
-    public ArrayList<Pet> getAdoptionPool()
-    {
-        return adoptionPool;
     }
 
     // returns pet store's name
@@ -71,17 +63,10 @@ public class PetStore implements PetStoreSpecification
         return null;
     }
 
-    // returns list of registered pet store members
-    public ArrayList<Member> getMembers()
-    {
-        return memberList;
-    }
-
     // returns list of registered regular pet store members
     public ArrayList<RegularMember> getRegularMembers()
     {
         ArrayList<RegularMember> result = new ArrayList<>();
-
         for(Member member : memberList)
         {
             if(member instanceof RegularMember)
@@ -96,7 +81,6 @@ public class PetStore implements PetStoreSpecification
     public ArrayList<PremiumMember> getPremiumMembers()
     {
         ArrayList<PremiumMember> result = new ArrayList<>();
-
         for(Member member : memberList)
         {
             if(member instanceof PremiumMember)
@@ -190,45 +174,42 @@ public class PetStore implements PetStoreSpecification
         System.out.println("End Of Premium Members\n");
     }
 
-    // add a regular member to pet store
+    // adds a regular member to pet store
     public void registerRegularMember(String firstName, String lastName, int passcode)
     {
         memberList.add(new RegularMember(memberId, firstName, lastName, passcode));
         memberId++;
     }
 
-    // add a premium member to pet store
+    // adds a premium member to pet store
     public void registerPremiumMember(String firstName, String lastName, boolean duePaid, int passcode)
     {
         memberList.add(new PremiumMember(memberId, firstName, lastName, duePaid, passcode));
         memberId++;
     }
 
-    // add a dog to pet store
+    // adds a dog to pet store
     public void addDog(int age, int weight, String color, double price)
     {
         petList.add(new Dog(petId, age, weight, color, price));
         petId++;
-        dogStock++;
     }
 
-    // add a cat to pet store
+    // adds a cat to pet store
     public void addCat(int age, int weight, String color, double price)
     {
         petList.add(new Cat(petId, age, weight, color, price));
         petId++;
-        catStock++;
     }
 
-    // add an exotic to pet store
+    // adds an exotic to pet store
     public void addExotic(String species, int age, int weight, String color, double price)
     {
         petList.add(new Exotic(petId, species, age, weight, color, price));
         petId++;
-        exoticStock++;
     }
 
-    // add a dog to pet store
+    // neatly organize dogs' information
     public void displayDogs()
     {
         System.out.println("\nDogs:\n");
@@ -239,7 +220,7 @@ public class PetStore implements PetStoreSpecification
         System.out.println("End Of Dogs\n");
     }
 
-    // add a cat to pet store
+    // neatly organize cats' information
     public void displayCats()
     {
         System.out.println("\nCats:\n");
@@ -250,7 +231,7 @@ public class PetStore implements PetStoreSpecification
         System.out.println("End Of Cats\n");
     }
 
-    // add an exotic to pet store
+    // neatly organize exotic (pets') information
     public void displayExotics()
     {
         System.out.println("\nExotics:\n");
@@ -261,6 +242,13 @@ public class PetStore implements PetStoreSpecification
         System.out.println("End Of Exotics\n");
     }
 
+    // returns pet store's adoption pool
+    public ArrayList<Pet> getAdoptionPool()
+    {
+        return adoptionPool;
+    }
+
+    // neatly organize pets' information from the adoption pool
     public void displayAdoptionPool()
     {
         System.out.println("\nPets For Adoption:\n");
@@ -271,12 +259,13 @@ public class PetStore implements PetStoreSpecification
         System.out.println("End Of Pets For Adoption\n");
     }
 
-    // sets monthly fee due status of pet store
+    // sets monthly fee due-status of pet store
     public void setMonthlyFeeDue(boolean updatedDueStatus)
     {
         monthlyFeeDue = updatedDueStatus;
     }
 
+    // increments pet id by 1 to maintain id functionality
     public void incrementPetId()
     {
         petId++;
@@ -290,22 +279,10 @@ public class PetStore implements PetStoreSpecification
         {
             petList.add(pet);
             petId++;
-            if(pet instanceof Dog)
-            {
-                dogStock++;
-            }
-            else if(pet instanceof Cat)
-            {
-                catStock++;
-            }
-            else
-            {
-                exoticStock++;
-            }
         }
     }
 
-    // returns dollar value of inventory
+    // returns dollar value of pet store's pet inventory
     @Override
     public double getInventoryValue()
     {

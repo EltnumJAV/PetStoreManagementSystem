@@ -1,9 +1,10 @@
+// cat class that inherits pet attributes
 public class Cat extends Pet
 {
-    // cat constructor
+    // creates a cat
     public Cat(int id, int age, int weight, String color, double price)
     {
-        super(id, "Cat", age, weight, color, price);
+        super(id, "CAT", age, weight, color, price);
     }
 
     // compares cat object to provided object based on price
@@ -11,7 +12,6 @@ public class Cat extends Pet
     {
         double catPrice = this.getPrice();
         double objPrice = ((Cat) obj).getPrice();
-
         if(catPrice > objPrice)
         {
             return 1;

@@ -1,17 +1,17 @@
+// exotic (pet) class inherits pet attributes
 public class Exotic extends Pet
 {
-    // exotic constructor
+    // creates an exotic (pet)
     public Exotic(int id, String species, int age, int weight, String color, double price)
     {
         super(id, species, age, weight, color, price);
     }
 
-    // compares exotic object to provided object based on price
+    // compares exotic (pet) object to provided object based on price
     public int compareTo(Object obj)
     {
         double exoticPrice = this.getPrice();
         double objPrice = ((Exotic) obj).getPrice();
-
         if(exoticPrice > objPrice)
         {
             return 1;

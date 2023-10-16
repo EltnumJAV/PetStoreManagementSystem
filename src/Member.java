@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-
+// abstract class for members from which different types of members will inherit
 public abstract class Member
 {
     // member attributes
@@ -11,7 +10,7 @@ public abstract class Member
     private int transactionCount;
     private int passcode;
 
-    // member constructor
+    // creates a member
     public Member(int id, String firstName, String lastName, int passcode)
     {
         this.id = id;
@@ -21,7 +20,10 @@ public abstract class Member
     }
 
     // neatly organizes member information
-    public abstract String getDisplay();
+    public String getDisplay()
+    {
+        return "Member ID: " + this.getId() + " | Name: " + this.getFirstName() + " " + this.getLastName() + " | Money Spent: $" + this.getMoneySpent() + " | Pets Purchased: " + this.getPetsPurchased() + " | Total Transactions: " + this.getTransactionCount();
+    }
 
     // getters for member attributes
     public int getId()
@@ -52,6 +54,11 @@ public abstract class Member
     public int getTransactionCount()
     {
         return transactionCount;
+    }
+
+    public int getPasscode()
+    {
+        return passcode;
     }
 
     // setters for member attributes

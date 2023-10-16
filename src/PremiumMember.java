@@ -1,9 +1,10 @@
+// premium member class that inherits from member
 public class PremiumMember extends Member
 {
         // premium member due-paid attribute
         private boolean duePaid;
 
-        // premium member constructor
+        // creates a premium member
         public PremiumMember(int id, String firstName, String lastName, boolean duePaid, int passcode)
         {
             super(id, firstName, lastName, passcode);
@@ -22,9 +23,9 @@ public class PremiumMember extends Member
             duePaid = newDuePaidStatus;
         }
 
-        // neatly organizes premium member information
+        // neatly organizes premium member's information
         public String getDisplay()
         {
-            return "Member ID: " + this.getId() + " | Name: " + this.getFirstName() + " " + this.getLastName() + " | Money Spent: $ " + this.getMoneySpent() + " | Due Paid: " + duePaid;
+            return super.getDisplay() + " | Monthly Fee Paid: " + this.isDuePaid();
         }
 }

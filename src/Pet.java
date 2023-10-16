@@ -1,3 +1,4 @@
+//// abstract class for pets from which different types of pets will inherit
 public abstract class Pet implements Comparable
 {
     // pet attributes
@@ -8,7 +9,7 @@ public abstract class Pet implements Comparable
     private String color;
     private double price;
 
-    // pet constructor
+    // creates a pet
     public Pet(int id, String species, int age, int weight, String color, double price)
     {
         this.id = id;
