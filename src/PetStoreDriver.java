@@ -7,7 +7,7 @@ public class PetStoreDriver
     // main method for testing pet store functions
     public static void main(String[] args)
     {
-        PetStore petStore = new PetStore("PetSmart", "727 Blue Zenith Dr", 727);
+        PetStore petStore = new PetStore("PetSmart", "727 Blue Zenith Dr", 727, 7.27);
         System.out.println("\nWelcome to " + petStore.getDisplay());
         Scanner scanner = new Scanner(System.in);
         start(scanner, petStore);
@@ -16,11 +16,12 @@ public class PetStoreDriver
     // starts the user-console interaction
     public static void start(Scanner scanner, PetStore petStore)
     {
-        System.out.println("\n1 - Owner\n2 - Customer\n");
+        System.out.println("\n1 - Owner\n2 - Customer\n3 - Exit\n");
         try
         {
             int choice = scanner.nextInt();
-            while(!(choice == 1) && !(choice == 2))
+            scanner.nextLine();
+            while(!(choice == 1) && !(choice == 2) && !(choice == 3))
             {
                 System.out.println("\nPlease Enter The Requested Information Next Time\n");
                 start(scanner, petStore);
@@ -29,15 +30,19 @@ public class PetStoreDriver
             {
                 OwnerConsoleInteractionUtilities.routeOwnerLogin(scanner, petStore);
             }
-            else
+            else if(choice == 2)
             {
                 routeCustomer(scanner, petStore);
+            }
+            else
+            {
+                System.exit(0);
             }
         }
         catch(InputMismatchException e)
         {
             System.out.println("\nPlease Enter The Requested Information Next Time\n");
-            scanner.next();
+            scanner.nextLine();
             start(scanner, petStore);
         }
     }
@@ -60,6 +65,7 @@ public class PetStoreDriver
                 petStore.displayRegularMembers();
                 System.out.print("\nEnter Your Persons ID: ");
                 int tempId = scanner.nextInt();
+                scanner.nextLine();
                 RegularCustomerConsoleInteractionUtilities.routeRegularCustomer(scanner, petStore, (RegularMember) petStore.getMember(tempId));
             }
             else if(choice == 2)
@@ -67,6 +73,7 @@ public class PetStoreDriver
                 petStore.displayPremiumMembers();
                 System.out.print("\nEnter Your Persons ID: ");
                 int tempId = scanner.nextInt();
+                scanner.nextLine();
                 PremiumCustomerConsoleInteractionUtilities.routePremiumCustomer(scanner, petStore, (PremiumMember) petStore.getMember(tempId));
             }
             else if(choice == 3)
@@ -77,6 +84,7 @@ public class PetStoreDriver
                 String lastName = scanner.nextLine();
                 System.out.print("\nEnter Passcode: ");
                 int passcode = scanner.nextInt();
+                scanner.nextLine();
                 petStore.registerRegularMember(firstName, lastName, passcode);
                 System.out.println("\nRegistration Successful\n");
                 routeCustomer(scanner, petStore);
@@ -89,8 +97,10 @@ public class PetStoreDriver
                 String lastName = scanner.nextLine();
                 System.out.print("\nEnter Passcode: ");
                 int passcode = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("\nPay Monthly Fee Now:\n(1 - Yes)\n(2 - No)\n");
                 int tempResponse = scanner.nextInt();
+                scanner.nextLine();
                 while(!(tempResponse == 1) && !(tempResponse == 2))
                 {
                     System.out.println("\nPlease Enter The Requested Information Next Time\n");
@@ -99,6 +109,7 @@ public class PetStoreDriver
                 if(tempResponse == 1)
                 {
                     petStore.registerPremiumMember(firstName, lastName, true, passcode);
+                    petStore.getPremiumMembers().get(petStore.getPremiumMembers().size() - 1).setMoneySpent(petStore.getPremiumMembers().get(petStore.getPremiumMembers().size() - 1).getMoneySpent() + petStore.getMonthlyFee());
                     System.out.println("\nRegistration Successful\n");
                 }
                 else
@@ -127,7 +138,7 @@ public class PetStoreDriver
         catch(InputMismatchException e)
         {
             System.out.println("\nPlease Enter The Requested Information Next Time\n");
-            scanner.next();
+            scanner.nextLine();
             routeCustomer(scanner, petStore);
         }
         catch(ClassCastException e)
@@ -147,6 +158,7 @@ public class PetStoreDriver
         {
             System.out.print("\nEnter ID Of Desired Pet (or '0' To Back): ");
             int tempId = scanner.nextInt();
+            scanner.nextLine();
             if(tempId == 0)
             {
                 PetStoreDriver.routeCustomer(scanner, petStore);
@@ -173,7 +185,7 @@ public class PetStoreDriver
         catch(InputMismatchException e)
         {
             System.out.println("\nPlease Enter The Requested Information Next Time\n");
-            scanner.next();
+            scanner.nextLine();
             routePurchase(scanner, petStore, member);
         }
     }
@@ -188,21 +200,26 @@ public class PetStoreDriver
             petStore.displayExotics();
             System.out.print("\nEnter ID Of First Pet: ");
             int firstId = scanner.nextInt();
+            scanner.nextLine();
             Pet p1 = petStore.getPet(firstId);
             System.out.print("\nEnter ID Of Second Pet: ");
             int secondId = scanner.nextInt();
+            scanner.nextLine();
             Pet p2 = petStore.getPet(secondId);
             if((p1.compareTo(p2)) > 0)
             {
                 System.out.println("\nThe First Pet Is More Expensive\n");
+                routeCustomer(scanner, petStore);
             }
             else if((p1.compareTo(p2)) < 0)
             {
                 System.out.println("\nThe Second Pet Is More Expensive\n");
+                routeCustomer(scanner, petStore);
             }
             else
             {
                 System.out.println("\nThe Pets Are Of Equal Value\n");
+                routeCustomer(scanner, petStore);
             }
         }
         catch(InputMismatchException | NullPointerException e)
@@ -218,15 +235,19 @@ public class PetStoreDriver
         try
         {
             System.out.print("\nEnter Species: ");
-            String species = scanner.next().toUpperCase();
+            String species = scanner.nextLine().toUpperCase();
             System.out.print("\nEnter Age: ");
             int age = scanner.nextInt();
+            scanner.nextLine();
             System.out.print("\nEnter Weight: ");
             int weight = scanner.nextInt();
+            scanner.nextLine();
             System.out.print("\nEnter Color: ");
             String color = scanner.next().toUpperCase();
+            scanner.nextLine();
             System.out.print("\nEnter Price: ");
             double price = scanner.nextDouble();
+            scanner.nextLine();
             if(species.equals("DOG"))
             {
                 petStore.getAdoptionPool().add(new Dog(petStore.getPetId(), age, weight, color, price));

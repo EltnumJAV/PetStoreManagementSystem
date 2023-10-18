@@ -14,6 +14,7 @@ public class PremiumCustomerConsoleInteractionUtilities
         }
         System.out.print("\nEnter Passcode For Selected Member: ");
         int passcodeInput = scanner.nextInt();
+        scanner.nextLine();
         if(passcodeInput == member.getPasscode())
         {
             routePremiumCustomerPostLogin(scanner, petStore, member);
@@ -32,6 +33,7 @@ public class PremiumCustomerConsoleInteractionUtilities
         try
         {
             int choice = scanner.nextInt();
+            scanner.nextLine();
             while(!(choice == 1) && !(choice == 2) && !(choice == 3) && !(choice == 4))
             {
                 System.out.println("\nPlease Enter The Requested Information Next Time\n");
@@ -51,6 +53,7 @@ public class PremiumCustomerConsoleInteractionUtilities
                 if(!member.isDuePaid())
                 {
                     member.setDuePaid(true);
+                    member.setMoneySpent(member.getMoneySpent() + petStore.getMonthlyFee());
                     System.out.println("\nYour Monthly Fee Has Been Successfully Paid\n");
                     PetStoreDriver.routeCustomer(scanner, petStore);
                 }
@@ -68,7 +71,7 @@ public class PremiumCustomerConsoleInteractionUtilities
         catch(InputMismatchException e)
         {
             System.out.println("\nPlease Enter The Requested Information Next Time\n");
-            scanner.next();
+            scanner.nextLine();
             routePremiumCustomerPostLogin(scanner, petStore, member);
         }
     }

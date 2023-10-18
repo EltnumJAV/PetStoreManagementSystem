@@ -7,6 +7,7 @@ public class PetStore implements PetStoreSpecification
     private String name;
     private String address;
     private int storeNumber;
+    private double monthlyFee;
     private boolean monthlyFeeDue;
     private ArrayList<Pet> petList;
     private ArrayList<Member> memberList;
@@ -15,15 +16,22 @@ public class PetStore implements PetStoreSpecification
     private static int memberId = 1;
 
     // creates a pet store
-    public PetStore(String name, String address, int storeNumber)
+    public PetStore(String name, String address, int storeNumber, double monthlyFee)
     {
         this.name = name;
         this.address = address;
         this.storeNumber = storeNumber;
+        this.monthlyFee = monthlyFee;
         petList = new ArrayList<>();
         memberList = new ArrayList<>();
         adoptionPool = new ArrayList<>();
         monthlyFeeDue = false;
+    }
+
+    // gets pet store's monthly fee cost
+    public double getMonthlyFee()
+    {
+        return monthlyFee;
     }
 
     // gets a pet's id

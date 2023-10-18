@@ -12,6 +12,7 @@ public class OwnerConsoleInteractionUtilities
         try
         {
             int choice = scanner.nextInt();
+            scanner.nextLine();
             while(!(choice == 1) && !(choice == 2))
             {
                 System.out.println("\nPlease Enter The Requested Information Next Time\n");
@@ -22,6 +23,7 @@ public class OwnerConsoleInteractionUtilities
                 System.out.print("\nEnter Owner Passcode: ");
                 count = 1;
                 int passcodeInput = scanner.nextInt();
+                scanner.nextLine();
                 if (passcodeInput == 902911)
                 {
                     routeOwner(scanner, petStore);
@@ -42,11 +44,11 @@ public class OwnerConsoleInteractionUtilities
             if(count == 1)
             {
                 System.out.println("\nPlease Enter The Requested Information Next Time\n");
-                scanner.next();
+                scanner.nextLine();
                 routeOwnerLogin(scanner, petStore);
             }
             System.out.println("\nPlease Enter 1 or 2\n");
-            scanner.next();
+            scanner.nextLine();
             routeOwnerLogin(scanner, petStore);
         }
     }
@@ -66,10 +68,11 @@ public class OwnerConsoleInteractionUtilities
         try
         {
             int choice = scanner.nextInt();
+            scanner.nextLine();
             while(!(choice == 1) && !(choice == 2) && !(choice == 3) && !(choice == 4) && !(choice == 5) && !(choice == 6) && !(choice == 7) && !(choice == 8) && !(choice == 9) && !(choice == 10) && !(choice == 0))
             {
                 System.out.println("\nPlease Enter The Requested Information Next Time\n");
-                scanner.next();
+                scanner.nextLine();
                 routeOwner(scanner, petStore);
             }
             if(choice == 1)
@@ -143,7 +146,7 @@ public class OwnerConsoleInteractionUtilities
         catch(InputMismatchException e)
         {
             System.out.println("\nPlease Enter The Requested Information Next Time\n");
-            scanner.next();
+            scanner.nextLine();
             routeOwner(scanner, petStore);
         }
     }

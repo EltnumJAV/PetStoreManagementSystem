@@ -15,6 +15,7 @@ public class RegularCustomerConsoleInteractionUtilities
 
         System.out.print("\nEnter Passcode For Selected Member: ");
         int passcodeInput = scanner.nextInt();
+        scanner.nextLine();
 
         if(passcodeInput == member.getPasscode())
         {
@@ -35,6 +36,7 @@ public class RegularCustomerConsoleInteractionUtilities
         try
         {
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
             while(!(choice == 1) && !(choice == 2) && !(choice == 3))
             {
@@ -59,7 +61,7 @@ public class RegularCustomerConsoleInteractionUtilities
         catch(InputMismatchException e)
         {
             System.out.println("\nPlease Enter The Requested Information Next Time\n");
-            scanner.next();
+            scanner.nextLine();
             routeRegularCustomerPostLogin(scanner, petStore, member);
         }
     }
